@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trip Tuner</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="app" class="app-shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="logo">🧭</div>
+        <div>
+          <h1>Trip Tuner</h1>
+          <p class="tagline">Design days you can't wait to live.</p>
+        </div>
+      </div>
+      <button class="primary" id="newTripBtn">➕ New Trip</button>
+      <section class="saved-trips" id="savedTripsSection">
+        <h2>Saved Trips</h2>
+        <div class="trip-list" id="savedTripsList"></div>
+      </section>
+    </aside>
+    <main class="content">
+      <section class="welcome" id="welcomeSection">
+        <h2>Welcome Explorer!</h2>
+        <p>
+          Craft immersive adventures with our smart itinerary builder. Create day-by-day plans,
+          sprinkle in memorable moments, and keep everything in sync automatically.
+        </p>
+        <div class="hero-card">
+          <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=80" alt="Travel inspiration">
+          <div>
+            <h3>Plan with clarity</h3>
+            <p>Structure each day by morning, afternoon, and evening, and watch Trip Tuner gently
+              harmonize your schedule as your plans evolve.</p>
+          </div>
+        </div>
+      </section>
+      <section class="itinerary hidden" id="itinerarySection">
+        <header class="trip-header">
+          <div>
+            <h2 id="tripTitle"></h2>
+            <p class="trip-dates" id="tripDates"></p>
+          </div>
+          <div class="trip-controls">
+            <label>
+              Start
+              <input type="date" id="startDateInput">
+            </label>
+            <label>
+              End
+              <input type="date" id="endDateInput">
+            </label>
+            <button class="ghost" id="toggleViewBtn">Map View</button>
+            <button class="primary" id="saveTripBtn">💾 Save</button>
+          </div>
+        </header>
+        <div class="itinerary-body">
+          <nav class="day-nav" id="dayNav"></nav>
+          <div class="day-detail">
+            <div class="view-toggle" id="viewToggle">
+              <button data-view="list" class="active">List</button>
+              <button data-view="map">Map</button>
+            </div>
+            <div class="day-content" id="dayContent"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="modal hidden" id="tripModal">
+    <div class="modal-content">
+      <button class="close" data-close>×</button>
+      <h2>Create a new trip</h2>
+      <form id="tripForm" class="form-grid">
+        <label>Trip Name
+          <input type="text" id="tripName" name="tripName" required>
+        </label>
+        <label>Destination
+          <input type="text" id="destination" name="destination" placeholder="Tokyo, Japan" required>
+        </label>
+        <label>Start Date
+          <input type="date" id="startDate" name="startDate" required>
+        </label>
+        <label>End Date
+          <input type="date" id="endDate" name="endDate" required>
+        </label>
+        <label>Budget (optional)
+          <input type="number" id="budget" name="budget" min="0" step="1" placeholder="1500">
+        </label>
+        <label>Your Name
+          <input type="text" id="userName" name="userName" placeholder="Ava Explorer" required>
+        </label>
+        <label>Your Age
+          <input type="number" id="userAge" name="userAge" min="0" required>
+        </label>
+        <label>Home Base
+          <input type="text" id="userPlace" name="userPlace" placeholder="Lisbon" required>
+        </label>
+        <button type="submit" class="primary full">Create Itinerary</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal hidden" id="activityModal">
+    <div class="modal-content">
+      <button class="close" data-close>×</button>
+      <h2 id="activityModalTitle">Add Activity</h2>
+      <form id="activityForm" class="form-grid">
+        <input type="hidden" id="activityDay">
+        <input type="hidden" id="activitySlot">
+        <input type="hidden" id="activityIndex">
+        <label>Title
+          <input type="text" id="activityTitle" required>
+        </label>
+        <label>Description
+          <textarea id="activityDescription" rows="3" placeholder="A cozy brunch spot..."></textarea>
+        </label>
+        <label>Location
+          <input type="text" id="activityLocation" placeholder="123 Market Street">
+        </label>
+        <label>Start Time
+          <input type="time" id="activityStart">
+        </label>
+        <label>End Time
+          <input type="time" id="activityEnd">
+        </label>
+        <button type="submit" class="primary full">Save Activity</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="app.js" type="module"></script>
+</body>
+</html>
