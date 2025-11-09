@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CalSnap | Smart Calorie Detection</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="background-glow"></div>
+
+    <div id="landing-page">
+      <header class="app-header">
+        <div class="logo-area">
+          <span class="logo-icon">🥗</span>
+          <span class="logo-text">CalSnap</span>
+        </div>
+        <nav class="main-nav">
+          <a href="#features">Features</a>
+          <a href="#how-it-works">How it works</a>
+        </nav>
+        <div class="auth-actions">
+          <button class="ghost-button" id="open-login">Log In</button>
+          <button class="primary-button" id="open-signup">Sign Up</button>
+        </div>
+      </header>
+
+      <main>
+        <section class="hero">
+          <div class="hero-content">
+            <h1 class="hero-title">Snap. Detect. Track.</h1>
+            <p class="hero-subtitle">
+              Upload your meal, let CalSnap estimate calories and macros instantly, and
+              keep your goals on track without manual logging.
+            </p>
+            <div class="hero-actions">
+              <button class="primary-button" id="cta-start">Get Started</button>
+              <button class="ghost-button" id="cta-tour">Take a tour</button>
+            </div>
+          </div>
+          <div class="hero-preview" aria-hidden="true">
+            <div class="preview-card">
+              <div class="preview-header">
+                <span class="preview-status">Processing photo…</span>
+                <span class="preview-time">12:47 PM</span>
+              </div>
+              <div class="preview-body">
+                <div class="preview-food">
+                  <div class="food-thumb"></div>
+                  <div>
+                    <p class="food-name">Quinoa Bowl</p>
+                    <p class="food-macros">420 kcal · 18 g protein</p>
+                  </div>
+                </div>
+                <div class="preview-progress">
+                  <span class="progress-label">AI analysing meal</span>
+                  <div class="progress-track">
+                    <div class="progress-bar"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="preview-footer">
+                <span>Total</span>
+                <span class="preview-total">420 kcal</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="features" class="feature-grid">
+          <article class="feature-card">
+            <div class="feature-icon">🔐</div>
+            <h3>Personal onboarding</h3>
+            <p>
+              Store your name, goals, and preferences securely so CalSnap welcomes you
+              back with a personalised dashboard.
+            </p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-icon">📸</div>
+            <h3>Smart photo uploads</h3>
+            <p>
+              Capture meals directly from your camera or gallery with a clean, focused
+              upload experience.
+            </p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-icon">🤖</div>
+            <h3>Instant AI estimates</h3>
+            <p>
+              Watch the AI break down calories, protein, carbs, and fat with subtle
+              micro-interactions.
+            </p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-icon">📊</div>
+            <h3>Clear nutrition table</h3>
+            <p>
+              Understand your meal at a glance with a structured table and daily totals
+              that update in real time.
+            </p>
+          </article>
+        </section>
+
+        <section id="how-it-works" class="how-it-works">
+          <h2>How CalSnap flows</h2>
+          <div class="steps">
+            <div class="step-card">
+              <span class="step-number">01</span>
+              <h3>Splash & Onboarding</h3>
+              <p>Launch into a welcoming screen with quick access to Sign Up or Log In.</p>
+            </div>
+            <div class="step-card">
+              <span class="step-number">02</span>
+              <h3>Create your account</h3>
+              <p>Provide your name, age, gender, and goals to personalise your insights.</p>
+            </div>
+            <div class="step-card">
+              <span class="step-number">03</span>
+              <h3>Upload your meal</h3>
+              <p>Snap a picture or upload from the gallery — CalSnap handles the rest.</p>
+            </div>
+            <div class="step-card">
+              <span class="step-number">04</span>
+              <h3>Review & save</h3>
+              <p>See calories and macros per item, then save the meal to your history.</p>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="app-footer">
+        <p>© <span id="current-year"></span> CalSnap. Designed for mindful eating.</p>
+      </footer>
+    </div>
+
+    <section id="dashboard-view" class="dashboard-view" hidden>
+      <header class="dashboard-topbar">
+        <div class="logo-area">
+          <span class="logo-icon">🥗</span>
+          <span class="logo-text">CalSnap</span>
+        </div>
+        <div class="topbar-right">
+          <button
+            type="button"
+            class="account-trigger"
+            id="account-button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            <span class="account-avatar" id="account-avatar">G</span>
+            <span class="account-name" id="account-name">Guest</span>
+            <span class="account-caret" aria-hidden="true">▾</span>
+          </button>
+          <div class="account-menu" id="account-menu" hidden>
+            <button type="button" id="account-details">Account details</button>
+            <button type="button" id="account-logout">Log out</button>
+          </div>
+        </div>
+      </header>
+      <div class="dashboard-shell">
+        <section class="dashboard" id="dashboard-section">
+          <div class="dashboard-panel">
+            <header class="dashboard-header">
+              <div>
+                <h2 id="dashboard-greeting">Hi there 👋</h2>
+                <p class="dashboard-subtitle">Ready to discover today's nutrition snapshot?</p>
+              </div>
+            </header>
+
+            <div class="upload-card" id="upload-card">
+              <div class="upload-illustration" aria-hidden="true"></div>
+              <div class="upload-content">
+                <h3>Upload or take a photo</h3>
+                <p>Drag & drop, or click the button to capture your latest meal.</p>
+                <input type="file" id="photo-input" accept="image/*" hidden />
+                <button class="primary-button" id="photo-trigger">📸 Upload or Take Photo</button>
+                <p class="upload-hint">Supported: JPG, PNG under 10 MB</p>
+              </div>
+            </div>
+
+            <div class="processing-card" id="processing-card" hidden>
+              <div class="processing-visual">
+                <div class="spinner"></div>
+              </div>
+              <p class="processing-text">Analysing your meal…</p>
+              <p class="processing-subtext">Google Gemini is identifying your food items and macros.</p>
+            </div>
+
+            <div class="results-card" id="results-card" hidden>
+              <div class="results-header">
+                <div class="results-photo" id="result-photo"></div>
+                <div>
+                  <h3>Meal breakdown</h3>
+                  <p class="results-meta" id="results-meta">Lunch · Today</p>
+                </div>
+              </div>
+              <div class="results-table-wrapper">
+                <table class="results-table">
+                  <thead>
+                    <tr>
+                      <th>Food item</th>
+                      <th>Calories</th>
+                      <th>Protein</th>
+                      <th>Carbs</th>
+                      <th>Fat</th>
+                    </tr>
+                  </thead>
+                  <tbody id="results-body"></tbody>
+                  <tfoot>
+                    <tr>
+                      <td>Total</td>
+                      <td id="total-calories">0 kcal</td>
+                      <td id="total-protein">0 g</td>
+                      <td id="total-carbs">0 g</td>
+                      <td id="total-fat">0 g</td>
+                    </tr>
+                  </tfoot>
+                </table>
+              </div>
+              <div class="results-actions">
+                <button class="primary-button" id="save-meal">✅ Save Meal</button>
+                <button class="ghost-button" id="retake-photo">🔁 Retake Photo</button>
+              </div>
+              <p class="success-message" id="save-success" hidden>
+                Meal added! Total <span id="success-calories">0</span> kcal for
+                <span id="success-meal">Lunch</span>.
+              </p>
+            </div>
+          </div>
+
+          <aside class="dashboard-sidebar">
+            <div class="profile-card">
+              <div class="profile-avatar" id="profile-avatar">A</div>
+              <div>
+                <p class="profile-name" id="profile-name">Guest</p>
+                <p class="profile-goal" id="profile-goal">Set your goal to begin</p>
+              </div>
+            </div>
+            <div class="daily-summary">
+              <h3>Today's totals</h3>
+              <div class="summary-grid">
+                <div class="summary-item">
+                  <span class="summary-label">Calories</span>
+                  <span class="summary-value" id="summary-calories">0 kcal</span>
+                </div>
+                <div class="summary-item">
+                  <span class="summary-label">Protein</span>
+                  <span class="summary-value" id="summary-protein">0 g</span>
+                </div>
+                <div class="summary-item">
+                  <span class="summary-label">Carbs</span>
+                  <span class="summary-value" id="summary-carbs">0 g</span>
+                </div>
+                <div class="summary-item">
+                  <span class="summary-label">Fat</span>
+                  <span class="summary-value" id="summary-fat">0 g</span>
+                </div>
+              </div>
+            </div>
+            <div class="saved-meals">
+              <h3>Saved meals</h3>
+              <p class="meal-empty" id="meal-empty">You haven't saved any meals yet.</p>
+              <ul class="meal-list" id="meal-list"></ul>
+              <div class="meal-detail-card" id="meal-detail" hidden>
+                <div class="meal-detail-header">
+                  <div>
+                    <h4 id="meal-detail-name">Meal</h4>
+                    <p id="meal-detail-meta">—</p>
+                  </div>
+                  <div class="meal-detail-totals">
+                    <span class="detail-total" id="meal-detail-total-calories">0 kcal</span>
+                    <span class="detail-macro" id="meal-detail-total-protein">0 g protein</span>
+                    <span class="detail-macro" id="meal-detail-total-carbs">0 g carbs</span>
+                    <span class="detail-macro" id="meal-detail-total-fat">0 g fat</span>
+                  </div>
+                </div>
+                <table class="meal-detail-table">
+                  <thead>
+                    <tr>
+                      <th>Food item</th>
+                      <th>Calories</th>
+                      <th>Protein</th>
+                      <th>Carbs</th>
+                      <th>Fat</th>
+                    </tr>
+                  </thead>
+                  <tbody id="meal-detail-body"></tbody>
+                </table>
+              </div>
+            </div>
+          </aside>
+        </section>
+      </div>
+    </section>
+
+    <section id="account-view" class="account-view" hidden>
+      <header class="account-header">
+        <div class="logo-area">
+          <span class="logo-icon">🥗</span>
+          <span class="logo-text">CalSnap</span>
+        </div>
+        <button class="ghost-button" id="account-back" type="button">← Back to dashboard</button>
+      </header>
+      <div class="account-wrapper">
+        <div class="account-card">
+          <div class="account-card-header">
+              <div class="account-avatar large" id="account-detail-avatar">G</div>
+              <div>
+                <h2 id="account-detail-name">Guest</h2>
+                <p id="account-detail-email">—</p>
+              </div>
+          </div>
+          <div class="account-details-grid">
+            <div class="detail-row">
+              <span>Goal</span>
+              <span id="account-detail-goal">—</span>
+            </div>
+            <div class="detail-row">
+              <span>Age</span>
+              <span id="account-detail-age">—</span>
+            </div>
+            <div class="detail-row">
+              <span>Gender</span>
+              <span id="account-detail-gender">—</span>
+            </div>
+            <div class="detail-row">
+              <span>Email</span>
+              <span id="account-detail-email-inline">—</span>
+            </div>
+          </div>
+          <button class="danger-button" id="account-logout-secondary" type="button">Log out</button>
+        </div>
+      </div>
+    </section>
+
+    <div class="modal" id="auth-modal" aria-hidden="true" role="dialog">
+      <div class="modal-overlay" id="modal-overlay"></div>
+      <div class="modal-content" role="document">
+        <button class="modal-close" id="close-modal" aria-label="Close">×</button>
+        <div class="modal-tabs">
+          <button class="modal-tab active" data-target="signup-form">Sign Up</button>
+          <button class="modal-tab" data-target="login-form">Log In</button>
+        </div>
+        <form id="signup-form" class="modal-form active" novalidate>
+          <h2>Create account</h2>
+          <div class="form-row">
+            <label for="signup-name">Full name</label>
+            <input id="signup-name" name="name" type="text" required placeholder="Arun SS" />
+          </div>
+          <div class="form-grid">
+            <div class="form-row">
+              <label for="signup-age">Age</label>
+              <input id="signup-age" name="age" type="number" min="10" max="100" required />
+            </div>
+            <div class="form-row">
+              <label for="signup-gender">Gender</label>
+              <select id="signup-gender" name="gender" required>
+                <option value="">Select</option>
+                <option value="female">Female</option>
+                <option value="male">Male</option>
+                <option value="non-binary">Non-binary</option>
+                <option value="prefer-not">Prefer not to say</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <label for="signup-email">Email</label>
+            <input id="signup-email" name="email" type="email" required />
+          </div>
+          <div class="form-row">
+            <label for="signup-password">Password</label>
+            <input id="signup-password" name="password" type="password" required minlength="6" />
+          </div>
+          <div class="form-row">
+            <label for="signup-goal">Goal</label>
+            <select id="signup-goal" name="goal" required>
+              <option value="">Select</option>
+              <option value="Maintain weight">Maintain weight</option>
+              <option value="Lose weight">Lose weight</option>
+              <option value="Gain weight">Gain weight</option>
+            </select>
+          </div>
+          <button type="submit" class="primary-button full-width">Create account</button>
+        </form>
+        <form id="login-form" class="modal-form" novalidate>
+          <h2>Welcome back</h2>
+          <div class="form-row">
+            <label for="login-email">Email</label>
+            <input id="login-email" name="email" type="email" required />
+          </div>
+          <div class="form-row">
+            <label for="login-password">Password</label>
+            <input id="login-password" name="password" type="password" required />
+          </div>
+          <button type="submit" class="primary-button full-width">Log In</button>
+          <p class="form-message" id="login-message" role="alert"></p>
+        </form>
+      </div>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
